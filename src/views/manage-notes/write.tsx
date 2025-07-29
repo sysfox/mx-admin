@@ -8,7 +8,6 @@ import {
   NInput,
   NSelect,
   NSpace,
-  NSplit,
   NSwitch,
   useMessage,
 } from 'naive-ui'
@@ -24,7 +23,6 @@ import {
 } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { PaginateResult } from '@mx-space/api-client'
-import type { PreviewButtonExposed } from '~/components/special-button/preview'
 import type { Coordinate, NoteModel } from '~/models/note'
 import type { TopicModel } from '~/models/topic'
 import type { WriteBaseType } from '~/shared/types/base'
@@ -35,7 +33,7 @@ import { AiHelperButton } from '~/components/ai/ai-helper'
 import { HeaderActionButton } from '~/components/button/rounded-button'
 import { TextBaseDrawer } from '~/components/drawer/text-base-drawer'
 import { Editor } from '~/components/editor/universal'
-import { HeartIcon, SlidersHIcon, TelegramPlaneIcon } from '~/components/icons'
+import { SlidersHIcon, TelegramPlaneIcon } from '~/components/icons'
 import { MaterialInput } from '~/components/input/material-input'
 import { GetLocationButton } from '~/components/location/get-location-button'
 import { SearchLocationButton } from '~/components/location/search-button'
@@ -63,12 +61,12 @@ const CrossBellConnectorIndirector = defineAsyncComponent({
 })
 
 type NoteReactiveType = {
-  hide: boolean
   mood: string
   weather: string
   password: string | null
   publicAt: Date | null
   bookmark: boolean
+  isPublished: boolean
 
   location: null | string
   coordinates: null | Coordinate
@@ -116,7 +114,6 @@ const NoteWriteView = defineComponent(() => {
   const resetReactive: () => NoteReactiveType = () => ({
     text: '',
     title: '',
-    hide: false,
     bookmark: false,
     mood: '',
 
@@ -126,6 +123,7 @@ const NoteWriteView = defineComponent(() => {
     location: '',
     coordinates: null,
     allowComment: true,
+    isPublished: true,
 
     id: undefined,
     nid: undefined,
@@ -272,6 +270,7 @@ const NoteWriteView = defineComponent(() => {
           />
 
           <HeaderPreviewButton data={data} iframe />
+
           <HeaderActionButton
             icon={<TelegramPlaneIcon />}
             onClick={handleSubmit}
@@ -284,6 +283,7 @@ const NoteWriteView = defineComponent(() => {
             onClick={() => {
               drawerShow.value = true
             }}
+            title="打开设置"
           >
             <Icon>
               <SlidersHIcon />
@@ -508,13 +508,6 @@ const NoteWriteView = defineComponent(() => {
           </NDatePicker>
         </NFormItem>
 
-        <NFormItem label="隐藏" labelAlign="right" labelPlacement="left">
-          <NSwitch
-            value={data.hide}
-            onUpdateValue={(e) => void (data.hide = e)}
-          ></NSwitch>
-        </NFormItem>
-
         <NFormItem
           label="标记为回忆项"
           labelAlign="right"
@@ -524,6 +517,17 @@ const NoteWriteView = defineComponent(() => {
             value={data.bookmark}
             onUpdateValue={(e) => void (data.bookmark = e)}
           ></NSwitch>
+        </NFormItem>
+        <NFormItem label="发布状态" labelAlign="right" labelPlacement="left">
+          <NSwitch
+            value={data.isPublished}
+            onUpdateValue={(e) => void (data.isPublished = e)}
+          >
+            {{
+              checked: () => '已发布',
+              unchecked: () => '草稿',
+            }}
+          </NSwitch>
         </NFormItem>
       </TextBaseDrawer>
 

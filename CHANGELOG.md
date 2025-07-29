@@ -1,5 +1,37 @@
 # CHANGELOG
 
+## [4.10.3](https://github.com/mx-space/mx-admin/compare/v4.10.2...v4.10.3) (2025-07-17)
+
+
+### Features
+
+* enhance note and post management with status toggle component ([7f4c8b9](https://github.com/mx-space/mx-admin/commit/7f4c8b94600b2572dc71a65f72b481461e52e614))
+
+
+
+## [4.10.2](https://github.com/mx-space/mx-admin/compare/v4.10.1...v4.10.2) (2025-07-17)
+
+
+### Reverts
+
+* post write ([c7f7e5e](https://github.com/mx-space/mx-admin/commit/c7f7e5ec650f60ed7ea79d240554fdc3cc5d4452))
+
+
+
+## [4.10.1](https://github.com/mx-space/mx-admin/compare/v4.10.0...v4.10.1) (2025-07-10)
+
+
+
+# [4.10.0](https://github.com/mx-space/mx-admin/compare/v4.9.0...v4.10.0) (2025-07-10)
+
+
+### Features
+
+* 添加发布状态管理功能 ([#994](https://github.com/mx-space/mx-admin/issues/994)) ([9176a99](https://github.com/mx-space/mx-admin/commit/9176a99867531e6b4c1845ba6f162f326afc6922))
+* 添加更新详情弹窗 ([#996](https://github.com/mx-space/mx-admin/issues/996)) ([bf31e88](https://github.com/mx-space/mx-admin/commit/bf31e88bdd6696871b0b1e4264dfd88058205f0c))
+
+
+
 # [4.9.0](https://github.com/mx-space/mx-admin/compare/v4.8.1...v4.9.0) (2025-01-08)
 
 
